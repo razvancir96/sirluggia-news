@@ -6,8 +6,9 @@ import {
     UPDATE_ARTICLE_DATA,
     UPDATE_ARTICLE_ERROR,
  } from './newsConstants';
-import { THE_GUARDIAN_API_KEY } from '../../configs/theGuardian';
 import { store } from '../store';
+
+const THE_GUARDIAN_API_KEY = process.env.REACT_APP_THE_GUARDIAN_API_KEY;
 
 export const startGettingNews = () => ({
     type: START_GETTING_NEWS

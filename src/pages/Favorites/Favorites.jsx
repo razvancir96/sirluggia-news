@@ -26,7 +26,7 @@ function Favorites(props) {
                             </div>
                         })
                         : <>
-                            <p className="text-center h4">
+                            <p className="h4">
                                 You do not have any favorite news.
                             </p>
                         </>

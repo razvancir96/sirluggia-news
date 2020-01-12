@@ -12,10 +12,9 @@
 /build
 
 # secrets
-/src/configs
+.env
 
 # misc
-.env
 .DS_Store
 .env.local
 .env.development.local
