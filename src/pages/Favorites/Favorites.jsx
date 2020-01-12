@@ -16,7 +16,7 @@ function Favorites(props) {
                     { favoriteArticles && favoriteArticles.length
                         ? favoriteArticles.map((article) => {
                             return <div className="article-box col-12 mb-5 pb-2" key={article.id}>
-                                <Link to={`/article/${article.id}`}>
+                                <Link to={`sirluggia-news/article/${article.id}`}>
                                     <h1 className="text-title h3">{article.webTitle}</h1>
                                     <p className="text-subtitle h5 mb-4">{article.pillarName} - {article.sectionName}</p>
                                 </Link>

@@ -12,8 +12,8 @@ function App() {
     <div className="app">
       <Switch>
         <Route exact path="/sirluggia-news" component={Home}/>
-        <Route path="/article/:articleId+" component={Article}/>
-        <Route path="/favorites" component={Favorites} />
+        <Route path="/sirluggia-news/article/:articleId+" component={Article}/>
+        <Route path="/sirluggia-news/favorites" component={Favorites} />
         <Route path="*" component={Page404}/>
       </Switch>
     </div>

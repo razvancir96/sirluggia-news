@@ -14,7 +14,7 @@ function Header(props) {
                 <img src={logo} alt="logo"/>
             </Link>
             <p className="favorites">
-                <Link to="/favorites" className="mr-1">FAVORITES</Link>
+                <Link to="/sirluggia-news/favorites" className="mr-1">FAVORITES</Link>
                 <span>{`(${favoritesNumber})`}</span>
             </p>
         </header>
