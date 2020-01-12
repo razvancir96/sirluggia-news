@@ -1,6 +1,6 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "0c7493a15db85a414756e2cee2024788",
+    "revision": "6a1c6264d4782b4f26698c8ad26886e6",
     "url": "/sirluggia-news/index.html"
   },
   {
@@ -8,7 +8,7 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sirluggia-news/static/css/2.67123b20.chunk.css"
   },
   {
-    "revision": "ef9b59fcf80e9115dd05",
+    "revision": "8ff8e6679fbadb0196c1",
     "url": "/sirluggia-news/static/css/main.cb8c4fde.chunk.css"
   },
   {
@@ -20,8 +20,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/sirluggia-news/static/js/2.8dca17a7.chunk.js.LICENSE"
   },
   {
-    "revision": "ef9b59fcf80e9115dd05",
-    "url": "/sirluggia-news/static/js/main.6de467e6.chunk.js"
+    "revision": "8ff8e6679fbadb0196c1",
+    "url": "/sirluggia-news/static/js/main.ef3223b6.chunk.js"
   },
   {
     "revision": "0d81e80ca3a3f663c9d9",
