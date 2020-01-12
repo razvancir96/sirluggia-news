@@ -11,7 +11,7 @@ function App() {
   return(
     <div className="app">
       <Switch>
-        <Route exact path="/" component={Home}/>
+        <Route exact path="/sirluggia-news" component={Home}/>
         <Route path="/article/:articleId+" component={Article}/>
         <Route path="/favorites" component={Favorites} />
         <Route path="*" component={Page404}/>

@@ -2,8 +2,8 @@ import React from 'react';
 
 function Page404() {
     return (
-        <div>
-            404
+        <div className="d-flex justify-content-center align-items-center">
+            <h1>404</h1>
         </div>
     )
 }
