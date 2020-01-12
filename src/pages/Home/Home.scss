@@ -1,0 +1,42 @@
+$light-gray: #bebebe;
+$red: #cf1717;
+$subtitle: #262626;
+$white: #e7e7e7;
+
+.home {
+    .article-box {
+        border-left: 12px solid $light-gray;
+
+        button {
+            background-color: $red;
+            border-color: $red;
+            color: white;
+            font-weight: bold;
+            font-family: 'Roboto', sans-serif;
+
+            &:active {
+                opacity: 0.8;
+            }
+        }
+
+        h1 {
+            font-family: 'Roboto', sans-serif;
+        }
+
+        p {
+            font-family: 'Roboto Condensed', sans-serif;
+        }
+    }
+
+    .page-item.active button {
+        background-color: $subtitle;
+        border-color: $subtitle;
+        color: $white;
+    }
+
+    .page-item button {
+        border-color: $subtitle;
+        color: $subtitle;
+        background-color: $white;
+    }
+}

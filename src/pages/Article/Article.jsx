@@ -3,10 +3,11 @@ import Layout from '../../components/Layout/Layout';
 import { connect } from 'react-redux';
 import { getArticle } from '../../redux/news/newsActions';
 import { addToFavorites } from '../../redux/favorites/favortiesActions';
+import './Article.scss';
 
 function Article(props) {
 
-    const { match, getArticle, articleInfo, location } = props;
+    const { match, getArticle, articleInfo, location, addToFavorites } = props;
 
     useEffect(() => {
         getArticle({
@@ -30,15 +31,20 @@ function Article(props) {
 
     return (
         <Layout>
-            <div className="container-fluid">
+            <div className="article container-fluid container-min-max-width">
                 { articleInfo
                     && <>
-                        <h1>{articleInfo.webTitle}</h1>
-                        <p>{articleInfo.webPublicationDate}</p>
-                        <p>{articleInfo.sectionName}</p>
-                        <p><a href={articleInfo.webUrl}>View the news on TheGuardian!</a></p>
+                        <h1 className="text-title h2 pb-2 mb-4">{articleInfo.webTitle}</h1>
+                        <div className="d-flex justify-content-between mb-5">
+                            <p className="text-subtitle h4">{articleInfo.pillarName} > {articleInfo.sectionName}</p>
+                            <p className="text-subtitle h5">{articleInfo.webPublicationDate}</p>
+                        </div>
+                        <p className="h5 mb-3">
+                            If you want to read the whole article, you can do it on TheGuardian website:
+                            <a className="font-weight-bold text-title" href={articleInfo.webUrl}> click here!</a>
+                        </p>
                         <button
-                            className="base-btn btn-dark"
+                            className="base-btn"
                             onClick={() => addToFavorites(buildAddToFavoritesPayload(articleInfo))}
                         >
                             Add to favorites

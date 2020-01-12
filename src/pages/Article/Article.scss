@@ -1,0 +1,34 @@
+$light-gray: #bebebe;
+$red: #cf1717;
+$subtitle: #262626;
+
+.article {
+    h1 {
+        font-family: 'Roboto', sans-serif;
+        border-bottom: 5px solid $light-gray;
+    }
+
+    p {
+        font-family: 'Roboto Condensed', sans-serif;
+    }
+
+    button {
+        background-color: $red;
+        border-color: $red;
+        color: white;
+        font-weight: bold;
+        font-family: 'Roboto', sans-serif;
+
+        &:hover {
+            opacity: 0.8;
+        }
+    }
+
+    a {
+        border-bottom: 2px solid $subtitle;
+
+        &:hover {
+            text-decoration: none;
+        }
+    }
+}

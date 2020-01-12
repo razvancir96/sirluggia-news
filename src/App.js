@@ -5,6 +5,7 @@ import Home from './pages/Home/Home';
 import Article from './pages/Article/Article';
 import Page404 from './pages/Page404/Page404';
 import Favorites from './pages/Favorites/Favorites';
+import './utils/utility-classes.scss';
 
 function App() {
   return(

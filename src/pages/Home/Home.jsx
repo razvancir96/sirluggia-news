@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { getNews } from '../../redux/news/newsActions';
 import { addToFavorites } from '../../redux/favorites/favortiesActions';
 import { Link } from 'react-router-dom';
+import './Home.scss';
 
 function Home(props) {
 
@@ -41,25 +42,29 @@ function Home(props) {
 
     return (
         <Layout>
-            <div className="container-fluid">
-                { newsList && newsList.items
-                    && newsList.items.map(news => (
-                        <div key={news.id}>
-                            <Link to={`/article/${news.id}`}>
-                                <h2>{news.pillarName} - {news.sectionName}</h2>
-                                <h3>{news.webTitle}</h3>
-                            </Link>
-                            <button
-                                className="base-btn btn-dark"
-                                onClick={() => addToFavorites(buildAddToFavoritesPayload(news))}
-                            >
-                                Add to favorites
-                            </button>
-                        </div>
-                    ))
-                }
-                <nav aria-label="Page navigation">
-                    <ul className="pagination">
+            <div className="home container-fluid container-min-max-width">
+                <div className="row">
+                    { newsList && newsList.items
+                        && newsList.items.map(news => (
+                            <div className="article-box col-12 col-lg-6 mb-4 pl-2 pr-5 py-3" key={news.id}>
+                                <Link to={`/article/${news.id}`} className="text-title">
+                                    <h1 className="text-title h3">{news.webTitle}</h1>
+                                    <p className="text-subtitle h5">{news.pillarName} > {news.sectionName}</p>
+                                </Link>
+                                <div className="d-flex justify-content-end">
+                                    <button
+                                        className="base-btn"
+                                        onClick={() => addToFavorites(buildAddToFavoritesPayload(news))}
+                                    >
+                                        Add to favorites
+                                    </button>
+                                </div>
+                            </div>
+                        ))
+                    }
+                </div>
+                <nav aria-label="Page navigation" className="d-flex justify-content-center my-3">
+                    <ul className="pagination m-0">
                         <li className={'page-item ' + (getPageNumberFromQueryString(location.search) === 1 ? 'active' : '')}>
                             <button className="page-link" onClick={() => goToPage(1)}>
                                 1

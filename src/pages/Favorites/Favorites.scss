@@ -1,0 +1,27 @@
+$light-gray: #bebebe;
+$red: #cf1717;
+
+.favorites {
+    .article-box {
+        border-bottom: 3px solid $light-gray;
+
+        button {
+            background-color: $light-gray;
+            border-color: $light-gray;
+            color: white;
+            font-weight: bold;
+
+            &:active {
+                opacity: 0.8;
+            }
+        }
+    }
+
+    h1 {
+        font-family: 'Roboto', sans-serif;
+    }
+
+    p {
+        font-family: 'Roboto Condensed', sans-serif;
+    }
+}
