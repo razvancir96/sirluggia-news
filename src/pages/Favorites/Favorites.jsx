@@ -2,6 +2,7 @@ import React from 'react';
 import Layout from '../../components/Layout/Layout';
 import { connect } from 'react-redux';
 import { removeFromFavorites } from '../../redux/favorites/favortiesActions';
+import { Link } from 'react-router-dom';
 
 function Favorites(props) {
 
@@ -9,12 +10,14 @@ function Favorites(props) {
 
     return (
         <Layout>
-            <div>
+            <div className="container-fluid">
                 { favoriteArticles && favoriteArticles.length
                     ? favoriteArticles.map((article) => {
                         return <div key={article.id}>
-                            <h2>{article.pillarName} - {article.sectionName}</h2>
-                            <h3>{article.webTitle}</h3>
+                            <Link to={`/article/${article.id}`}>
+                                <h2>{article.pillarName} - {article.sectionName}</h2>
+                                <h3>{article.webTitle}</h3>
+                            </Link>
                             <button className="base-btn btn-dark" onClick={() => removeFromFavorites({articleId: article.id})}>
                                 Remove from favorites
                             </button>

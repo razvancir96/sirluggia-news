@@ -21,30 +21,43 @@ export const updateNewsData = (payload) => ({
 export const updateNewsError = (payload) => ({
     type: UPDATE_NEWS_ERROR,
     payload
-})
+});
+
+export const doNothing = () => ({
+    type: 'DO_NOTHING'
+});
 
 export const getNews = (payload) => {
-    console.log(store.getState().news.data)
+    const newsPages = store.getState().news.data;
+    const cachedNewsPage = newsPages.find((newsPage) => newsPage.route === payload.route);
+
     const url = `https://content.guardianapis.com/search?api-key=${THE_GUARDIAN_API_KEY}&page=${payload.page}`;
 
     return (dispatch) => {
-        dispatch(startGettingNews());
+        if (cachedNewsPage) {
+            dispatch(doNothing());
+        } else {
+            dispatch(startGettingNews());
 
-        fetch(url).then(response => response.json()).then(news => {
-            const filteredResults = news.response.results.map((result) => {
-                const { id, sectionName, webTitle, pillarName } = result;
+            fetch(url).then(response => response.json()).then(news => {
+                const filteredResults = news.response.results.map((result) => {
+                    const { id, sectionName, webTitle, pillarName } = result;
 
-                return {
-                    id,
-                    sectionName,
-                    webTitle,
-                    pillarName
-                }
+                    return {
+                        id,
+                        sectionName,
+                        webTitle,
+                        pillarName
+                    }
+                });
+                dispatch(updateNewsData({
+                    route: payload.route,
+                    items: filteredResults
+                }));
+            }).catch(error => {
+                dispatch(updateNewsError(error));
             });
-            dispatch(updateNewsData(filteredResults));
-        }).catch(error => {
-            dispatch(updateNewsError(error));
-        });
+        }
     }
 }
 
@@ -60,10 +73,6 @@ export const updateArticleData = (payload) => ({
 export const updateArticleError = (payload) => ({
     type: UPDATE_ARTICLE_ERROR,
     payload
-});
-
-export const doNothing = () => ({
-    type: 'DO_NOTHING'
 });
 
 export const getArticle = (payload) => {

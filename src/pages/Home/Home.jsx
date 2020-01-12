@@ -12,8 +12,12 @@ function Home(props) {
     useEffect(() => {
         const queryString = location.search;
         const pageNumber = getPageNumberFromQueryString(queryString);
-        getNews({page: pageNumber});
-    }, [getNews, location.search]);
+        const fullPath = location.pathname + location.search;
+        getNews({
+            page: pageNumber,
+            route: fullPath
+        });
+    }, [getNews, location.search, location.pathname]);
 
     function goToPage(page) {
         const pageQueryString = page === 1 ? '' : `?page=${page}`;
@@ -37,10 +41,9 @@ function Home(props) {
 
     return (
         <Layout>
-            <div>
-                <h1>HOME</h1>
-                { newsList
-                    && newsList.map(news => (
+            <div className="container-fluid">
+                { newsList && newsList.items
+                    && newsList.items.map(news => (
                         <div key={news.id}>
                             <Link to={`/article/${news.id}`}>
                                 <h2>{news.pillarName} - {news.sectionName}</h2>
@@ -74,9 +77,11 @@ function Home(props) {
     )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
+    const { location } = props;
+
     return {
-        newsList: state.news.data
+        newsList: state.news.data.find((newsPage) => newsPage.route === location.pathname + location.search)
     };
 }
 

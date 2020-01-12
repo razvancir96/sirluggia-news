@@ -26,7 +26,10 @@ export default (state = initialState, { type, payload }) => {
         case UPDATE_NEWS_DATA:
             return {
                 ...state,
-                data: payload,
+                data: [
+                    ...state.data,
+                    payload
+                ],
                 loading: false,
                 error: null
             }
