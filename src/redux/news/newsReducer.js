@@ -9,7 +9,7 @@ import {
 
 const initialState = {
     data: [],
-    articleData: {},
+    articleData: [],
     loading: false,
     error: null
 }
@@ -33,7 +33,10 @@ export default (state = initialState, { type, payload }) => {
         case UPDATE_ARTICLE_DATA:
             return {
                 ...state,
-                articleData: payload,
+                articleData: [
+                    ...state.articleData,
+                    payload
+                ],
                 loading: false,
                 error: null
             }

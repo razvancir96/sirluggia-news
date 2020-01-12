@@ -7,6 +7,7 @@ import {
     UPDATE_ARTICLE_ERROR,
  } from './newsConstants';
 import { THE_GUARDIAN_API_KEY } from '../../configs/theGuardian';
+import { store } from '../store';
 
 export const startGettingNews = () => ({
     type: START_GETTING_NEWS
@@ -23,6 +24,7 @@ export const updateNewsError = (payload) => ({
 })
 
 export const getNews = (payload) => {
+    console.log(store.getState().news.data)
     const url = `https://content.guardianapis.com/search?api-key=${THE_GUARDIAN_API_KEY}&page=${payload.page}`;
 
     return (dispatch) => {
@@ -58,30 +60,42 @@ export const updateArticleData = (payload) => ({
 export const updateArticleError = (payload) => ({
     type: UPDATE_ARTICLE_ERROR,
     payload
-})
+});
+
+export const doNothing = () => ({
+    type: 'DO_NOTHING'
+});
 
 export const getArticle = (payload) => {
+    const articleData = store.getState().news.articleData;
+    const cachedArticle = articleData.find((article) => article.route === payload.route);
+
     const url = `https://content.guardianapis.com/${payload.articleId}?api-key=${THE_GUARDIAN_API_KEY}`;
 
     return (dispatch) => {
-        dispatch(startGettingArticle());
+        if (cachedArticle) {
+            dispatch(doNothing());
+        } else {
+            dispatch(startGettingArticle());
 
-        fetch(url).then(response => response.json()).then((article) => {
-            const articleInfo = article.response.content;
-            const { id, sectionName, webPublicationDate, webTitle, webUrl, pillarName } = articleInfo;
+            fetch(url).then(response => response.json()).then((article) => {
+                const articleInfo = article.response.content;
+                const { id, sectionName, webPublicationDate, webTitle, webUrl, pillarName } = articleInfo;
 
-            const filteredArticleInfo = {
-                id,
-                sectionName,
-                webPublicationDate,
-                webTitle,
-                webUrl,
-                pillarName
-            }
+                const filteredArticleInfo = {
+                    route: payload.route,
+                    id,
+                    sectionName,
+                    webPublicationDate,
+                    webTitle,
+                    webUrl,
+                    pillarName
+                }
 
-            dispatch(updateArticleData(filteredArticleInfo));
-        }).catch(error => {
-            dispatch(updateArticleError(error));
-        });
+                dispatch(updateArticleData(filteredArticleInfo));
+            }).catch(error => {
+                dispatch(updateArticleError(error));
+            });
+        }
     }
 }

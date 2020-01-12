@@ -5,11 +5,14 @@ import { getArticle } from '../../redux/news/newsActions';
 
 function Article(props) {
 
-    const { match, getArticle, articleInfo } = props;
+    const { match, getArticle, articleInfo, location } = props;
 
     useEffect(() => {
-        getArticle({ articleId: match.params.articleId });
-    }, [getArticle, match.params.articleId]);
+        getArticle({
+            articleId: match.params.articleId,
+            route: location.pathname
+        });
+    }, [getArticle, match.params.articleId, location.pathname]);
 
     return (
         <Layout>
@@ -27,9 +30,9 @@ function Article(props) {
     )
 }
 
-function mapStateToProps(state) {
+function mapStateToProps(state, props) {
     return {
-        articleInfo: state.news.articleData
+        articleInfo: state.news.articleData.find((article) => article.route === props.location.pathname)
     };
 }
 
