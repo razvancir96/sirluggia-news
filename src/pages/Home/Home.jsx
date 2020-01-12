@@ -47,7 +47,7 @@ function Home(props) {
                     { newsList && newsList.items
                         && newsList.items.map(news => (
                             <div className="article-box col-12 col-lg-6 mb-4 pl-2 pr-5 py-3" key={news.id}>
-                                <Link to={`/sirluggia-news/article/${news.id}`} className="text-title">
+                                <Link to={`${process.env.PUBLIC_URL}/article/${news.id}`} className="text-title">
                                     <h1 className="text-title h3">{news.webTitle}</h1>
                                     <p className="text-subtitle h5">{news.pillarName} > {news.sectionName}</p>
                                 </Link>

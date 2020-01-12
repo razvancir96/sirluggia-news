@@ -10,11 +10,11 @@ function Header(props) {
     return (
         <header className="container-fluid container-min-max-width d-flex justify-content-between align-items-center
             pl-0 pr-5 h6">
-            <Link to="/sirluggia-news">
+            <Link to={process.env.PUBLIC_URL + '/'}>
                 <img src={logo} alt="logo"/>
             </Link>
             <p className="favorites">
-                <Link to="/sirluggia-news/favorites" className="mr-1">FAVORITES</Link>
+                <Link to={process.env.PUBLIC_URL + '/favorites'} className="mr-1">FAVORITES</Link>
                 <span>{`(${favoritesNumber})`}</span>
             </p>
         </header>

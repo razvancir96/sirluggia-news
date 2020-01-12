@@ -11,9 +11,9 @@ function App() {
   return(
     <div className="app">
       <Switch>
-        <Route exact path="/sirluggia-news" component={Home}/>
-        <Route path="/sirluggia-news/article/:articleId+" component={Article}/>
-        <Route path="/sirluggia-news/favorites" component={Favorites} />
+        <Route exact path={process.env.PUBLIC_URL + '/'} component={Home}/>
+        <Route path={process.env.PUBLIC_URL + '/article/:articleId+'} component={Article}/>
+        <Route path={process.env.PUBLIC_URL + '/favorites'} component={Favorites} />
         <Route path="*" component={Page404}/>
       </Switch>
     </div>
