@@ -1,16 +1,22 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import Layout from '../../components/Layout/Layout';
 import { connect } from 'react-redux';
 import { getNews } from '../../redux/news/newsActions';
 
 function Home(props) {
 
-    const page = 1;
     const {getNews, newsList} = props;
+
+    const [page, setPage] = useState(1);
 
     useEffect(() => {
         getNews({page});
     }, [page, getNews]);
+
+    function goToPage(page) {
+        setPage(page);
+        getNews({page});
+    }
 
     return (
         <Layout>
@@ -24,6 +30,20 @@ function Home(props) {
                         </div>
                     ))
                 }
+                <nav aria-label="Page navigation">
+                    <ul className="pagination">
+                        <li className={'page-item ' + (page === 1 ? 'active' : '')}>
+                            <button className="page-link" onClick={() => goToPage(1)}>
+                                1
+                            </button>
+                        </li>
+                        <li className={'page-item ' + (page === 2 ? 'active' : '')}>
+                            <button className="page-link" onClick={() => goToPage(2)}>
+                                2
+                            </button>
+                        </li>
+                    </ul>
+                </nav>
             </div>
         </Layout>
     )
