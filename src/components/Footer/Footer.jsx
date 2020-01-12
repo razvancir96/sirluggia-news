@@ -2,9 +2,9 @@ import React from 'react';
 
 function Footer() {
     return (
-        <div>
-            FOOTER
-        </div>
+        <footer className="d-flex justify-content-center">
+            <p className="py-3">&copy; Răzvan Cîrlugea</p>
+        </footer>
     )
 }
 
