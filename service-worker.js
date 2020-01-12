@@ -14,7 +14,7 @@
 importScripts("https://storage.googleapis.com/workbox-cdn/releases/4.3.1/workbox-sw.js");
 
 importScripts(
-  "/sirluggia-news/precache-manifest.613d8e37975651514944d53eb6f56e40.js"
+  "/sirluggia-news/precache-manifest.e75896f7be264d2397eb5f1c240b8857.js"
 );
 
 self.addEventListener('message', (event) => {
