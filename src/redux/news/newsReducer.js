@@ -1,7 +1,15 @@
-import { START_GETTING_NEWS, UPDATE_NEWS_DATA, UPDATE_NEWS_ERROR } from './newsConstants';
+import {
+    START_GETTING_NEWS,
+    UPDATE_NEWS_DATA,
+    UPDATE_NEWS_ERROR,
+    START_GETTING_ARTICLE,
+    UPDATE_ARTICLE_DATA,
+    UPDATE_ARTICLE_ERROR,
+ } from './newsConstants';
 
 const initialState = {
     data: [],
+    articleData: {},
     loading: false,
     error: null
 }
@@ -9,6 +17,7 @@ const initialState = {
 export default (state = initialState, { type, payload }) => {
     switch (type) {
         case START_GETTING_NEWS:
+        case START_GETTING_ARTICLE:
             return {
                 ...state,
                 loading: true,
@@ -21,6 +30,14 @@ export default (state = initialState, { type, payload }) => {
                 loading: false,
                 error: null
             }
+        case UPDATE_ARTICLE_DATA:
+            return {
+                ...state,
+                articleData: payload,
+                loading: false,
+                error: null
+            }
+        case UPDATE_ARTICLE_ERROR:
         case UPDATE_NEWS_ERROR:
             return {
                 ...state,
