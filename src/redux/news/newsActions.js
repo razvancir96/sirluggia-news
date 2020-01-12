@@ -68,16 +68,16 @@ export const getArticle = (payload) => {
 
         fetch(url).then(response => response.json()).then((article) => {
             const articleInfo = article.response.content;
-            const { id, sectionName, webPublicationDate, webTitle, webUrl } = articleInfo;
+            const { id, sectionName, webPublicationDate, webTitle, webUrl, pillarName } = articleInfo;
 
             const filteredArticleInfo = {
                 id,
                 sectionName,
                 webPublicationDate,
                 webTitle,
-                webUrl
+                webUrl,
+                pillarName
             }
-            console.log(filteredArticleInfo);
 
             dispatch(updateArticleData(filteredArticleInfo));
         }).catch(error => {

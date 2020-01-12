@@ -16,10 +16,10 @@ function Article(props) {
             <div>
                 { articleInfo
                     && <>
-                        <h1>{ articleInfo.webTitle }</h1>
-                        <p>{ articleInfo.webPublicationDate }</p>
-                        <p>{ articleInfo.sectionName }</p>
-                        <p><a href={ articleInfo.webUrl }>View the news on TheGuardian!</a></p>
+                        <h1>{articleInfo.webTitle}</h1>
+                        <p>{articleInfo.webPublicationDate}</p>
+                        <p>{articleInfo.sectionName}</p>
+                        <p><a href={articleInfo.webUrl}>View the news on TheGuardian!</a></p>
                     </>
                 }
             </div>

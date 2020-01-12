@@ -2,11 +2,12 @@ import React, { useEffect} from 'react';
 import Layout from '../../components/Layout/Layout';
 import { connect } from 'react-redux';
 import { getNews } from '../../redux/news/newsActions';
+import { addToFavorites } from '../../redux/favorites/favortiesActions';
 import { Link } from 'react-router-dom';
 
 function Home(props) {
 
-    const {getNews, newsList, history, location} = props;
+    const {getNews, newsList, history, location, addToFavorites} = props;
 
     useEffect(() => {
         const queryString = location.search;
@@ -18,9 +19,20 @@ function Home(props) {
         const pageQueryString = page === 1 ? '' : `?page=${page}`;
         history.push({search: pageQueryString});
     }
-
     function getPageNumberFromQueryString(queryString) {
         return queryString ? Number(queryString[queryString.length - 1]) : 1
+    }
+    function buildAddToFavoritesPayload(articleInfo) {
+        const {id, pillarName, sectionName, webTitle} = articleInfo
+
+        return {
+            article: {
+                id,
+                pillarName,
+                sectionName,
+                webTitle
+            }
+        }
     }
 
     return (
@@ -29,12 +41,18 @@ function Home(props) {
                 <h1>HOME</h1>
                 { newsList
                     && newsList.map(news => (
-                        <Link to={`/article/${news.id}`} key={news.id}>
-                            <div>
+                        <div key={news.id}>
+                            <Link to={`/article/${news.id}`}>
                                 <h2>{news.pillarName} - {news.sectionName}</h2>
                                 <h3>{news.webTitle}</h3>
-                            </div>
-                        </Link>
+                            </Link>
+                            <button
+                                className="base-btn btn-dark"
+                                onClick={() => addToFavorites(buildAddToFavoritesPayload(news))}
+                            >
+                                Add to favorites
+                            </button>
+                        </div>
                     ))
                 }
                 <nav aria-label="Page navigation">
@@ -64,7 +82,8 @@ function mapStateToProps(state) {
 
 function mapDispatchToProps(dispatch) {
     return {
-        getNews: (payload) => dispatch(getNews(payload))
+        getNews: (payload) => dispatch(getNews(payload)),
+        addToFavorites: (payload) => dispatch(addToFavorites(payload))
     }
 }
 
