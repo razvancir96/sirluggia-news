@@ -10,7 +10,7 @@ function Header(props) {
     return (
         <header className="container-fluid container-min-max-width d-flex justify-content-between align-items-center
             pl-0 pr-5 h6">
-            <Link to="/">
+            <Link to="/sirluggia-news">
                 <img src={logo} alt="logo"/>
             </Link>
             <p className="favorites">
